@@ -1,0 +1,12 @@
+//
+// Components Base SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "variables" as *;
+
+body {
+  font-family: $body-ff;
+  color: $body-fg-color;
+  background-color: $body-bg-color;
+}
