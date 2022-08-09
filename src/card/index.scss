@@ -1,0 +1,167 @@
+//
+// Components Card SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "../theme/variables" as theme-variable;
+@use "../theme/functions" as theme-function;
+@use "../theme/mixins" as theme-mixin;
+@use "variables" as *;
+
+// Card.
+// -------------------------
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: $card-bg-color;
+  border-radius: $card-bd-radius;
+  color: inherit;
+
+  &:where([class*="outlined"]) {
+    outline-color: currentColor;
+    outline-offset: -($card-outline-offset);
+    outline-style: solid;
+    outline-width: $card-outline-width;
+  }
+
+  &:where(.has-margin) {
+    margin-block-end: $card-margin;
+  }
+}
+
+// Card title/subtitle.
+// -------------------------
+
+.card__title,
+.card__subtitle {
+  margin: 0;
+  padding-inline: $card-title-padding-inline;
+  font-weight: 400;
+  line-height: $card-title-lh;
+}
+
+// Card title.
+
+.card__title {
+  padding-block-start: 1.25rem;
+  font-size: $card-title-fz;
+  letter-spacing: $card-title-ls;
+}
+
+// Card subtitle.
+
+.card__subtitle {
+  padding-block: $card-subtitle-padding-block;
+  font-size: $card-subtitle-fz;
+  letter-spacing: $card-subtitle-ls;
+  opacity: $card-subtitle-opacity;
+}
+
+// Card content.
+// -------------------------
+
+.card__content {
+  flex: 1;
+  padding-block-end: $card-content-padding-block;
+  padding-inline: $card-content-padding-inline;
+  font-size: $card-content-fz;
+  letter-spacing: $card-content-ls;
+  line-height: $card-content-lh;
+
+  &:where(:first-child),
+  :where([card-media]) + & {
+    padding-block-start: $card-content-padding-block;
+  }
+}
+
+// Card media.
+// -------------------------
+
+.card__media {
+  display: block;
+  border: none;
+
+  &:where(:first-child):where(:not(.rounded)) {
+    border-start-end-radius: inherit;
+    border-start-start-radius: inherit;
+  }
+
+  &:where(:last-child):where(:not(rounded)) {
+    border-end-end-radius: inherit;
+    border-end-start-radius: inherit;
+  }
+
+  &:where(rounded) {
+    border-radius: inherit;
+  }
+
+  &:where(iframe, img, video) {
+    max-inline-size: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &:where(:not(
+    .aspect-ratio\:1-1,
+    .aspect-ratio\:4-3,
+    .aspect-ratio\:21-9
+  )) {
+    aspect-ratio: 16 / 9;
+  }
+
+  &:where(.aspect-ratio\:1-1) {
+    aspect-ratio: 1 / 1;
+  }
+
+  &:where(.aspect-ratio\:4-3) {
+    aspect-ratio: 4 / 3;
+  }
+
+  &:where(.aspect-ratio\:21-9) {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+// Card actions.
+// -------------------------
+
+.card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $card-actions-gap;
+  justify-content: space-between;
+  padding-block-end: $card-actions-padding-block;
+  padding-inline: $card-actions-padding-inline;
+}
+
+.card__buttons,
+.card__icons {
+  display: flex;
+  flex-wrap: nowrap;
+  flex: 1;
+  gap: $card-action-gap;
+}
+
+.card__buttons {
+  justify-content: flex-start;
+}
+
+.card__icons {
+  justify-content: flex-end;
+}
+
+// Card theme.
+// -------------------------
+
+@include theme-mixin.theme-colors using ($name, $color) {
+  .card:where(.filled\:#{$name}) {
+    color: theme-function.color-contrast($color, theme-variable.$text-dark, theme-variable.$text-light);
+    background-color: $color;
+  }
+
+  .card:where(.outlined\:#{$name}) {
+    outline-color: $color;
+  }
+}

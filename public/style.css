@@ -1,0 +1,9 @@
+/**
+ * Base style.
+ */
+
+body {
+  font-family: Poppins, sans-serif;
+  color: rgba(0, 0, 0, .84);
+  background-color: #e0e0e0;
+}

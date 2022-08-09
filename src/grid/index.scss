@@ -1,0 +1,44 @@
+//
+// Components Grid SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "mixins" as grid-mixin;
+@use "variables" as grid-variable;
+
+//
+// Grid style.
+// -------------------------
+
+.grid {
+  display: grid;
+  inline-size: 100%;
+
+  &:where(:not(.no-gap)) {
+    gap: grid-variable.$grid-gap;
+  }
+
+  &:where(.has-margin) {
+    margin-block-end: grid-variable.$grid-gap;
+  }
+
+  &:where(.is-dense) {
+    grid-auto-flow: row dense;
+  }
+
+  @each $bp, $size in grid-variable.$grid-breakpoints {
+    @include grid-mixin.responsive-breakpoint(
+      if($bp == "xs", null, $bp)
+    ) {
+      @for $col from 2 through 8 {
+        &:where(.#{$bp}\:#{$col}) {
+          grid-template-columns: repeat(#{$col}, 1fr);
+        }
+
+        :where(.#{$bp}\:span-#{$col}) {
+          grid-column: span $col;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+//
+// Components Typography SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:map";
+@use "variables" as *;
+
+// Headings.
+// -------------------------
+
+@each $level, $size-map in $headings-size-map {
+  h#{$level}, .h#{$level} {
+    margin-block-start: 0;
+    margin-block-end: map.get($size-map, "margin");
+    font-size: map.get($size-map, "font-size");
+    font-weight: map.get($size-map, "font-weight");
+    letter-spacing: map.get($size-map, "letter-spacing");
+    line-height: calc(2px + 2ex + 2px);
+  }
+}
+
+// Fluid font sizes.
+// -------------------------
+
+.fluid-fz {
+  @each $level, $size-map in $fluid-font-size-map {
+    &#{if($level == 0, '', \:#{$level})} {
+      font-size: map.get($size-map, "font-size");
+      font-weight: map.get($size-map, "font-weight");
+      letter-spacing: map.get($size-map, "letter-spacing");
+      line-height: calc(2px + 2ex + 2px);
+    }
+  }
+}
+
+// Paragraphs.
+// -------------------------
+
+p:where(:not(:last-child)) {
+  margin-block-end: $p-margin-block;
+}
+
+// Helpers.
+// -------------------------
+
+.text-end {
+  text-align: end;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-start {
+  text-align: start;
+}
+
+.text-mute {
+  opacity: .64;
+}

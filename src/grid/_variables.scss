@@ -1,0 +1,14 @@
+//
+// Components Grid Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+$grid-breakpoints: (
+  "xs": 0,
+  "sm": 33em,
+  "md": 47em,
+  "lg": 61em,
+  "xl": 75em
+);
+
+$grid-gap: 1.5rem;

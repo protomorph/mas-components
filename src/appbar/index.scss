@@ -1,0 +1,279 @@
+//
+// Components Appbar SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "../theme/mixins" as theme-mixin;
+@use "variables" as *;
+
+// Appbar.
+// -------------------------
+
+.appbar {
+  display: flex;
+  z-index: $appbar-z-index;
+  color: $appbar-fg-color;
+  background-color: $appbar-bg-color;
+
+  &:is([class*="elevation"]) {
+    transition: none;
+  }
+
+  &:where(:not(.sticky), :not(.fixed)) {
+    position: relative;
+  }
+
+  &:where(.sticky):where(:not(.fixed)) {
+    position: sticky;
+    inset: 0 0 auto 0;
+  }
+
+  &:where(.fixed):where(:not(.sticky)) {
+    position: fixed;
+    inset: 0 0 auto 0;
+  }
+
+  @media (max-width: $appbar-breakpoint-max) {
+  	flex-direction: column;
+  }
+
+  @media (min-width: $appbar-breakpoint) {
+  	flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  :any-link:focus-visible {
+    outline-color: currentColor;
+    outline-offset: .125rem;
+    outline-style: solid;
+    outline-width: .125rem;
+  }
+}
+
+.has-fixed-appbar {
+  padding-block-start: $appbar-height;
+}
+
+// Appbar lead.
+// -------------------------
+
+.appbar__lead {
+  display: flex;
+  align-items: center;
+  gap: $appbar-menu-gap;
+  height: $appbar-height;
+  padding-inline-start: $appbar-lead-padding;
+  padding-inline-end: $appbar-lead-padding;
+}
+
+// Appbar brand.
+// -------------------------
+
+.appbar__brand {
+  position: relative;
+  display: inline-flex;
+  padding: $appbar-brand-padding;
+  color: currentcolor;
+  font-weight: 500;
+  letter-spacing: .0257125em;
+  line-height: 1.5rem;
+  text-decoration: none;
+  border-radius: $appbar-brand-bd-radius;
+
+  @include theme-mixin.interaction-state;
+}
+
+// Appbar menu button.
+// -------------------------
+
+.appbar__button {
+  position: relative;
+  box-sizing: inherit;
+  margin-inline-start: auto;
+  color: currentcolor;
+  line-height: 1.5rem;
+  font-family: inherit;
+  font-weight: 500;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline-color: currentcolor;
+    outline-offset: .125rem;
+    outline-style: solid;
+    outline-width: .125rem;
+  }
+
+  @media (max-width: $appbar-breakpoint-max) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem .75rem;
+    border-radius: 1.25rem;
+  }
+
+  @media (min-width: $appbar-breakpoint) {
+    display: none;
+  }
+
+  @include theme-mixin.interaction-state;
+
+  // button text.
+
+  &-text {
+    padding: 0;
+  }
+}
+
+.appbar__button-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-inline-end: -.125rem;
+  margin-inline-start: .5rem;
+}
+
+.appbar__button-icon-show,
+.appbar__button-icon-hide {
+  position: absolute;
+  fill: currentcolor;
+  transition:
+    transform
+    var(--appbar-icon-duration, 150ms)
+    var(--appbar-icon-ease, ease-in-out)
+  ;
+  transform-origin: 50%;
+}
+
+.appbar__button-icon-show {
+  transform: scale(1);
+
+  [aria-expanded="true"] & {
+    transform: scale(0);
+  }
+}
+
+.appbar__button-icon-hide {
+  transform: scale(0);
+
+  [aria-expanded="true"] & {
+    transform: scale(1);
+  }
+}
+
+// Appbar collapse.
+// -------------------------
+
+.appbar__collapse {
+  @media (max-width: $appbar-breakpoint-max) {
+    display: grid;
+    grid-template-rows: 0fr;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition:
+      grid-template-rows
+      var(--appbar-duration, 240ms)
+      var(--appbar-ease, ease-in-out)
+    ;
+
+    &[data-collapse="visible"] {
+      grid-template-rows: 1fr;
+    }
+  }
+
+  @media (min-width: $appbar-breakpoint) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: $appbar-height;
+  }
+}
+
+// Appbar section.
+// -------------------------
+
+.appbar__section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $appbar-menu-gap;
+  height: $appbar-height;
+  padding-inline-start: $appbar-menu-padding;
+  padding-inline-end: $appbar-menu-padding;
+}
+
+// Appbar menu.
+// -------------------------
+
+.appbar__menu {
+  display: flex;
+
+  @media (max-width: $appbar-breakpoint-max) {
+    flex-direction: column;
+    gap: $appbar-menu-gap;
+    min-height: 0;
+    max-height: $appbar-menu-height;
+    visibility: hidden;
+    overflow-y: hidden;
+    scroll-padding-block: $appbar-menu-scroll-padding-block;
+    transition:
+      visibility
+      var(--appbar-duration, 240ms)
+      var(--appbar-ease, ease-in-out)
+    ;
+
+    [data-collapse="visible"] > & {
+      visibility: visible;
+      overflow-y: auto;
+    }
+
+    @include theme-mixin.style-scrollbar(
+      transparent, currentColor, true
+    );
+
+    &.end {
+      align-self: end;
+    }
+  }
+
+  @media (min-width: $appbar-breakpoint) {
+    gap: $appbar-menu-gap;
+    padding-inline-start: $appbar-menu-padding;
+    padding-inline-end: $appbar-menu-padding;
+  }
+}
+
+// Appbar menu link.
+// -------------------------
+
+.appbar__link {
+  position: relative;
+  color: currentcolor;
+  line-height: 1.5rem;
+  text-decoration: none;
+  border-radius: $appbar-link-bd-radius;
+
+  @media (max-width: $appbar-breakpoint-max) {
+    margin-inline: $appbar-link-gap;
+    padding: $appbar-link-padding;
+
+    &:first-child {
+      margin-block-start: $appbar-link-gap;
+    }
+
+    &:last-child {
+      margin-block-end: $appbar-link-gap;
+    }
+  }
+
+  @media (min-width: $appbar-breakpoint) {
+    padding: $appbar-link-padding;
+  }
+
+  @include theme-mixin.interaction-state;
+}

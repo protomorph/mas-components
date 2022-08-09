@@ -1,0 +1,52 @@
+
+<aside class="drawer has-appbar" id="main-drawer" aria-hidden="true">
+  <div class="drawer__surface elevation:5" data-surface="drawer">
+    <header class="drawer__header">
+      <button class="drawer__button button icon" data-dismiss="drawer" data-interaction aria-label="Close navigation">
+        <i class="icons mdi mdi-close"></i>
+      </button>
+      <a href="/" class="drawer__brand">version 3.0.0</a>
+    </header>
+
+    <section class="drawer__scroll" tabindex="-1">
+      <div class="drawer__guide">
+        <div class="drawer__menu">
+          <a class="drawer__item" href="/" data-interaction>
+            <span class="drawer__text">Home</span>
+          </a>
+
+          <div class="drawer__divider" role="separator"></div>
+
+          <div class="drawer__title">
+            <span class="drawer__title-text">Components</span>
+          </div>
+          {% for item in menu %}
+            {% if item.type and item.type == 'component' %}
+              <a class="drawer__item" href="{{ item.path }}" data-interaction>
+                <span class="drawer__text">{{ item.name }}</span>
+              </a>
+            {% endif %}
+          {% endfor %}
+
+          <div class="drawer__divider" role="separator"></div>
+
+          <div class="drawer__title">
+            <span class="drawer__title-text">Helpers</span>
+          </div>
+          {% for item in menu %}
+            {% if item.type and item.type == 'helper' %}
+              <a class="drawer__item" href="{{ item.path }}" data-interaction>
+                <span class="drawer__text">{{ item.name }}</span>
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <footer class="drawer__footer text-dark">
+      <a href="#">privacy</a> | <a href="#">ToS</a>
+    </footer>
+  </div>
+  <div class="drawer__backdrop" aria-hidden="true" data-backdrop="drawer"></div>
+</aside>

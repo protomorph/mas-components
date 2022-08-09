@@ -1,0 +1,28 @@
+{% extends "layout/default.html" %}
+
+{% block content %}
+  <h1>{{ pageTitle }}</h1>
+
+  {% set colorList = [
+    "blue", "green",
+    "indigo", "orange",
+    "pink", "red",
+    "dark", "light",
+    "facebook", "instagram",
+    "twitter", "youtube"
+  ] %}
+
+  <div class="grid xs:2 sm:3 md:6 has-margin">
+    {% for name in colorList %}
+      <div class="card filled:{{ name }}">
+        <div class="card__content">{{ name }}</div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="grid xs:2 sm:3 md:6">
+    {% for name in colorList %}
+      <span class="text-{{ name }}">{{ name }}</span>
+    {% endfor %}
+  </div>
+{% endblock %}

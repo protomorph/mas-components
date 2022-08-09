@@ -1,0 +1,40 @@
+//
+// Components Appbar Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:map" as map;
+@use "../grid/variables" as grid-variable;
+
+$appbar-breakpoint: map.get(grid-variable.$grid-breakpoints, "md");
+$appbar-breakpoint-max: $appbar-breakpoint - 0.02;
+
+// Shared.
+
+$appbar-z-index: 25;
+$appbar-height: 3.5rem;
+$appbar-bg-color: white;
+$appbar-fg-color: rgb(0 0 0 / .84);
+
+// Lead
+
+$appbar-lead-padding: .75rem;
+
+// Brand
+
+$appbar-brand-padding: .5rem .75rem;
+$appbar-brand-lh: 1.5rem;
+$appbar-brand-bd-radius: 1.25rem;
+
+// Menu
+
+$appbar-menu-height: 11rem;
+$appbar-menu-gap: .5rem;
+$appbar-menu-padding: .75rem;
+$appbar-menu-scroll-padding-block: .75rem;
+
+// Link
+
+$appbar-link-gap: .75rem;
+$appbar-link-padding: .5rem .75rem;
+$appbar-link-bd-radius: 1.25rem;

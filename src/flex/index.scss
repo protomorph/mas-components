@@ -1,0 +1,79 @@
+//
+// Components Flex SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:math";
+@use "../grid/mixins" as grid-mixin;
+@use "../grid/variables" as grid-variable;
+
+.flex {
+  display: flex;
+  box-sizing: border-box;
+
+  &:where(.has-gap):where(:not(.has-gap-sm)) {
+    gap: grid-variable.$grid-gap;
+  }
+
+  &:where(.has-gap-sm) {
+    gap: math.div(grid-variable.$grid-gap, 2);
+  }
+
+  &:where(.has-margin) {
+    margin-block-end: grid-variable.$grid-gap;
+  }
+
+  &:where(.wrap) {
+    flex-wrap: wrap;
+  }
+
+  &:where(.column) {
+    flex-direction: column;
+  }
+
+  &:where(.align-end) {
+    align-items: flex-end;
+  }
+
+  &:where(.align-center) {
+    align-items: center;
+  }
+
+  &:where(.justify-end) {
+    justify-content: flex-end;
+  }
+
+  &:where(.justify-center) {
+    justify-content: center;
+  }
+
+  @each $bp, $size in grid-variable.$grid-breakpoints {
+    @include grid-mixin.responsive-breakpoint(
+      if($bp == "xs", null, $bp)
+    ) {
+      &:where(.#{$bp}\:align-end) {
+        align-items: flex-end;
+      }
+
+      &:where(.#{$bp}\:align-center) {
+        align-items: center;
+      }
+
+      &:where(.#{$bp}\:align-start) {
+        align-items: flex-start;
+      }
+
+      &:where(.#{$bp}\:justify-end) {
+        justify-content: flex-end;
+      }
+
+      &:where(.#{$bp}\:justify-center) {
+        justify-content: center;
+      }
+
+      &:where(.#{$bp}\:justify-start) {
+        justify-content: flex-start;
+      }
+    }
+  }
+}

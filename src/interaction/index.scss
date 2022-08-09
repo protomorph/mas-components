@@ -1,0 +1,101 @@
+//
+// Components Interaction SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "variables" as *;
+@use "keyframes" as *;
+
+// Interaction.
+// -------------------------
+
+.interaction,
+.interaction__stroke,
+.interaction__fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+// Interaction stroke outline.
+// -------------------------
+
+.interaction__stroke {
+  border: $interaction-bd-width solid currentcolor;
+  opacity: 0;
+}
+
+[data-out="true"] .interaction__stroke {
+  animation:
+    interaction-stroke-animation
+    $interaction-animation-stroke-duration
+    cubic-bezier(.4, 0, 1, 1) forwards
+  ;
+}
+
+// Interaction background fill.
+// -------------------------
+
+.interaction__fill {
+  background-color: currentcolor;
+  opacity: 0;
+}
+
+:where(:not([data-interaction="ripple"])) > [data-in="true"] .interaction__fill {
+  animation:
+    interaction-animation-in
+    $interaction-animation-fill-in-duration
+    cubic-bezier(.4, 0, 1, 1) forwards
+  ;
+}
+
+:where(:not([data-interaction="ripple"])) > [data-out="true"] .interaction__fill {
+  animation:
+    interaction-animation-out
+    $interaction-animation-fill-out-duration
+    linear forwards
+  ;
+}
+
+// Ripple Interaction.
+// -------------------------
+
+:where([data-interaction="ripple"]) > .interaction {
+  overflow: hidden;
+}
+
+:where([data-interaction="ripple"]) .interaction__fill {
+  position: absolute;
+  inset-block-start: var(--interaction-block-start, 0px);
+  inset-inline-start: var(--interaction-inline-start, 0px);
+  z-index: 1;
+  block-size: var(--interaction-size, 16px);
+  inline-size: var(--interaction-size, 16px);
+  margin-top: var(--interaction-offset, -8px);
+  margin-left: var(--interaction-offset, -8px);
+  background-color: currentColor;
+  border-radius: 100%;
+  pointer-events: none;
+  content: "";
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: 50% 50% 0px;
+  will-change: opacity, transform;
+}
+
+:where([data-interaction="ripple"]) > [data-in="true"] .interaction__fill {
+  animation:
+    interaction-fill-ripple-animation-in
+    $interaction-animation-ripple-in-duration
+    cubic-bezier(.4, 0, 1, 1) forwards
+  ;
+}
+
+:where([data-interaction="ripple"]) > [data-out="true"] .interaction__fill {
+  animation:
+    interaction-fill-ripple-animation-out
+    $interaction-animation-ripple-out-duration
+    linear forwards
+  ;
+}

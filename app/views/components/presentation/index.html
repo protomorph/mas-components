@@ -1,0 +1,13 @@
+{% extends "layout/default.html" %}
+
+{% block content %}
+  <h1>{{ pageTitle }}</h1>
+
+  <div class="grid md:3 has-margin">
+    {% for item in menu %}
+      {% if item.type == 'layout' %}
+        <a href="{{ item.path }}" class="button cta pill blue elevation:2 hover:4 active:8" data-interaction="ripple">{{ item.name | replace("Presentation ", "") }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock %}

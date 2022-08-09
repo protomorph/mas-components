@@ -1,0 +1,53 @@
+//
+// Components Presentation Banner SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "../theme/variables" as theme-variable;
+@use "../theme/functions" as theme-function;
+@use "variables" as *;
+
+// Banner.
+// -------------------------
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  padding-block: $banner-padding-block;
+  padding-inline: $banner-padding-inline;
+
+  &:where(.vh\:100) {
+    block-size: 100vh;
+  }
+
+  &:where(.vh\:75) {
+    block-size: 75vh;
+  }
+
+  &:where(.vh\:50) {
+    block-size: 50vh;
+  }
+
+  &:where(.has-margin) {
+    margin-block-end: $banner-gap;
+  }
+
+  &:where(.has-offset) {
+    margin-inline: -$banner-gap;
+  }
+
+  &:where(.align-center) {
+    align-items: center;
+  }
+
+  &:where(.justify-center) {
+    justify-content: center;
+  }
+
+  @each $name, $color in theme-variable.$color-map {
+    &:where(.#{$name}) {
+      color: theme-function.color-contrast($color, theme-variable.$text-dark, theme-variable.$text-light);
+      background-color: $color;
+    }
+  }
+}

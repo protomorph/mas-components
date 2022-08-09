@@ -1,0 +1,305 @@
+//
+// Components Drawer Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "variables" as *;
+@use "../theme/mixins" as theme-mixin;
+
+// Drawer.
+// -------------------------
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: $drawer-z-index;
+  display: flex;
+  isolation: isolate;
+  font-family: inherit;
+
+  &:where(.has-appbar) {
+    inset-block-start: $drawer-inset-block-start-appbar;
+  }
+
+  &:where(:not([data-open="true"])) {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+// Drawer surface.
+// -------------------------
+
+.drawer__surface {
+  position: absolute;
+  inset-block: $drawer-surface-gap;
+  inset-inline-start: $drawer-surface-gap;
+  display: flex;
+  flex-direction: column;
+  inline-size: $drawer-surface-inline-size;
+  background-color: $drawer-surface-bg-color;
+  border-radius: $drawer-surface-bd-radius;
+  overflow: hidden;
+
+  :where(:not([data-visible="true"])) & {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition:
+      opacity 150ms cubic-bezier(.4, 0, .2, 1),
+      transform 150ms ease-in
+    ;
+  }
+
+  :where([data-visible="true"]) & {
+    opacity: 1;
+    transform: translateX(0%);
+    transition:
+      opacity 200ms cubic-bezier(.4, 0, .2, 1) 200ms,
+      transform 200ms ease-in-out 200ms
+    ;
+  }
+
+  :any-link:focus-visible {
+    outline-color: currentColor;
+  }
+}
+
+// Drawer header.
+// -------------------------
+
+.drawer__header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: $drawer-header-gap;
+  block-size: $drawer-header-block-size;
+  padding-inline: $drawer-header-padding-inline;
+  background: none;
+}
+
+:where(.drawer__header) {
+  color: currentColor;
+}
+
+// Drawer button.
+// -------------------------
+
+.drawer__button {
+  order: -1;
+  color: currentColor;
+}
+
+// Drawer brand.
+// -------------------------
+
+.drawer__brand {
+  position: relative;
+  display: inline-flex;
+  padding: $drawer-brand-padding;
+  color: currentcolor;
+  font-weight: 500;
+  letter-spacing: .03em;
+  line-height: $drawer-brand-lh;
+  text-decoration: none;
+  border-radius: $drawer-brand-bd-radius;
+
+  &:focus-visible {
+    outline-color: currentColor;
+    outline-offset: $drawer-link-outline-offset;
+    outline-style: solid;
+    outline-width: $drawer-link-outline-width;
+  }
+}
+
+// Drawer scroll.
+// -------------------------
+
+.drawer__scroll {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background: none;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-block: $drawer-scroll-padding-block;
+
+  @include theme-mixin.style-scrollbar(
+    $drawer-surface-bg-color, currentColor, true
+  );
+
+  &:where(:not(:hover), :not(:focus-within)) {
+    overflow-y: hidden;
+  }
+
+  &:where(:hover, :focus-within) {
+    overflow-y: auto;
+  }
+}
+
+// Drawer scroll.
+// -------------------------
+
+.drawer__guide {
+  display: block;
+  flex-grow: 1;
+  inline-size: $drawer-guide-inline-size;
+  background: none;
+}
+
+// Drawer menu.
+// -------------------------
+
+.drawer__menu {
+  display: flex;
+  flex-direction: column;
+  gap: $drawer-menu-gap;
+  margin: 0;
+  padding: $drawer-menu-padding;
+  inline-size: 100%;
+  list-style-type: none;
+  background-color: transparent;
+}
+
+// Drawer menu title.
+// -------------------------
+
+.drawer__title {
+  display: flex;
+  padding: $drawer-title-padding;
+}
+
+.drawer__title-text {
+  display: inline-block;
+  font-size: $drawer-title-fz;
+  font-weight: 600;
+  letter-spacing: .04em;
+  line-height: $drawer-title-lh;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: transparent;
+  overflow: hidden;
+  opacity: .64;
+}
+
+// Drawer menu item.
+// -------------------------
+
+.drawer__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: $drawer-item-block-size;
+  padding-block: 0;
+  padding-inline: $drawer-item-padding-inline;
+  text-decoration: none;
+  color: currentColor;
+  background-color: transparent;
+  border-radius: $drawer-item-bd-radius;
+
+  &:focus-visible {
+    outline-color: currentColor;
+    outline-offset: $drawer-link-outline-offset;
+    outline-style: solid;
+    outline-width: $drawer-link-outline-width;
+  }
+
+  @include theme-mixin.interaction-state;
+}
+
+// Drawer menu icon.
+// -------------------------
+
+.drawer__icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  order: -1;
+  margin-inline-end: $drawer-item-icon-gap;
+  block-size: $drawer-item-icon-size;
+  inline-size: $drawer-item-icon-size;
+  color: currentColor;
+  font-size: $drawer-item-icon-fz;
+  fill: currentColor;
+  pointer-events: none;
+  opacity: .64;
+}
+
+// Drawer menu text.
+// -------------------------
+
+.drawer__text {
+  flex: 1;
+  order: 0;
+  font-size: $drawer-item-text-fz;
+  font-weight: 500;
+  letter-spacing: .035em;
+  line-height: $drawer-item-text-lh;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// Drawer menu divider.
+// -------------------------
+
+.drawer__divider {
+  box-sizing: inherit;
+  margin-block: $drawer-item-divider-margin-block;
+  margin-inline-end: -($drawer-item-divider-margin-inline);
+  margin-inline-start: $drawer-item-divider-margin-inline;
+  padding: 0px;
+  height: $drawer-item-divider-block-size;
+  background-color: currentColor;
+  opacity: .26;
+}
+
+// Drawer footer.
+// -------------------------
+
+.drawer__footer {
+  display: flex;
+  align-items: center;
+  gap: $drawer-footer-gap;
+  padding: $drawer-footer-padding;
+  font-size: $drawer-footer-fz;
+  font-weight: 500;
+  letter-spacing: .025em;
+  line-height: $drawer-footer-lh;
+  background-color: transparent;
+
+  a {
+    text-decoration: none;
+    color: currentColor;
+    opacity: .64;
+
+    &:hover,
+    &:focus {
+      opacity: .84;
+    }
+  }
+}
+
+// Drawer backdrop.
+// -------------------------
+
+.drawer__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  block-size: 100%;
+  inline-size: 100%;
+  background-color: $drawer-backdrop-color;
+
+  :where(:not([data-visible="true"])) & {
+    opacity: 0;
+    transition: opacity 150ms cubic-bezier(.4, 0, .2, 1) 150ms;
+  }
+
+  :where([data-visible="true"]) & {
+    opacity: 1;
+    transition: opacity 200ms cubic-bezier(.4, 0, .2, 1);
+  }
+}

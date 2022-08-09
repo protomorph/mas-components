@@ -1,0 +1,167 @@
+//
+// Components Presentation Highlight SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:math";
+@use "../theme/variables" as theme-variable;
+@use "../theme/functions" as theme-function;
+@use "variables" as *;
+
+// Highlight.
+// -------------------------
+
+.highlight {
+  display: grid;
+  align-self: stretch;
+  isolation: isolate;
+
+  &:where(.has-margin) {
+    margin-block-end: $highlight-gap;
+  }
+
+  &:where(.has-offset) {
+    margin-inline: -($highlight-gap);
+  }
+
+  @media (max-width: $breakpoint-max) {
+  	grid-template-areas: "background" "content";
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: $breakpoint) {
+    &:where(
+      :not(.reverse), :not(.expanded), :not(.split)
+    ) {
+      grid-template-areas: "background content content";
+    }
+
+    &:where(:not(.split)) {
+      grid-template-columns: repeat(3, math.div(1fr, 3));
+    }
+
+    &:where(.reverse):where(:not(.split)) {
+      grid-template-areas: "content content background";
+    }
+
+    &:where(.expanded) {
+      grid-template-areas: "background background content";
+    }
+
+    &:where(.expanded):where(.reverse) {
+      grid-template-areas: "content background background";
+    }
+
+    &:where(.split) {
+      grid-template-areas: "background content";
+      grid-template-columns: repeat(2, math.div(1fr, 2));
+    }
+
+    &:where(.split):where(.reverse) {
+      grid-template-areas: "content background";
+    }
+  }
+}
+
+// Highlight background.
+// -------------------------
+
+.highlight__background {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  grid-area: background;
+  padding: $highlight-gap;
+
+  &::before {
+    position: absolute;
+    inset-block-start: 0;
+    z-index: -1;
+    content: "";
+
+    @media (max-width: $breakpoint-max) {
+      inset-block-end: -($highlight-gap);
+      inset-inline: 0;
+    }
+
+    @media (min-width: $breakpoint) {
+      .highlight:where(:not(.reverse)) & {
+        inset-block-end: 0;
+        inset-inline-end: -($highlight-gap);
+        inset-inline-start: 0;
+        border-top-right-radius: $highlight-bd-radius;
+        border-bottom-right-radius: $highlight-bd-radius;
+      }
+
+      .highlight:where(.reverse) & {
+        inset-block-end: 0;
+        inset-inline-end: 0;
+        inset-inline-start: -($highlight-gap);
+        border-top-left-radius: $highlight-bd-radius;
+        border-bottom-left-radius: $highlight-bd-radius;
+      }
+    }
+  }
+
+  @each $name, $color in theme-variable.$color-map {
+    .highlight:where(.#{$name}) & {
+      color: theme-function.color-contrast($color, theme-variable.$text-dark, theme-variable.$text-light);
+
+      &::before {
+        background-color: $color;
+      }
+    }
+  }
+}
+
+// Highlight title.
+// -------------------------
+
+.highlight__title {
+  margin-block-start: 0;
+  font-size: $highlight-title-fz;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: $highlight-title-ls;
+
+  &:where(:not(:last-child)),
+  &:where(:not(:only-child)) {
+    margin-block-end: .5rem;
+  }
+
+  &:where(:last-child),
+  &:where(:only-child) {
+    margin-block-end: 0;
+  }
+}
+
+// Highlight content.
+// -------------------------
+
+.highlight__content {
+  display: flex;
+  flex-direction: column;
+  grid-area: content;
+
+  @media (max-width: $breakpoint-max) {
+  	padding-inline: $highlight-gap;
+  }
+
+  @media (min-width: $breakpoint) {
+  	padding-block: $highlight-gap;
+
+    .highlight:where(:not(.highlight--reverse)) & {
+      padding-inline-end: $highlight-gap;
+    }
+
+    .highlight:where(.highlight--reverse) & {
+      padding-inline-start: $highlight-gap;
+    }
+  }
+
+  > * {
+    flex: 1;
+    max-inline-size: 100%;
+  }
+}

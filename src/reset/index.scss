@@ -1,0 +1,121 @@
+//
+// Components Reset SCSS.
+// @version 3.0.0
+// -------------------------
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+  text-size-adjust: none;
+  overflow-x: hidden;
+
+  @media (prefers-reduced-motion: no-preference) {
+    &:focus-within {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  min-block-size: 100vh;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+}
+
+:where(
+  p,
+  dl,
+  dd,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  body,
+  figure,
+  ol[class],
+  ul[class],
+  blockquote
+) {
+  margin: 0;
+}
+
+:where(
+  p,
+  dd,
+  h1,
+  h2,
+  h3,
+  h4,
+  li:not([class])
+) {
+  word-break: break-word;
+}
+
+:where(h1, h2) {
+  font-weight: 300;
+}
+
+:where(h3, h4) {
+  font-weight: 400;
+}
+
+:where(h5, h6) {
+  font-weight: 500;
+}
+
+:any-link {
+  text-decoration-skip-ink: auto;
+  text-decoration-thickness: .0625em;
+
+  &:where([class]) {
+    text-decoration-line: none;
+  }
+}
+
+:where(img, picture) {
+  display: block;
+  max-inline-size: 100%;
+  border: none;
+}
+
+:where(
+  input,
+  button,
+  select,
+  textarea,
+  ::file-selector-button
+) {
+  font: inherit;
+}
+
+:where(
+  input::placeholder,
+  textarea::placeholder
+) {
+  color: currentColor;
+  opacity: .56;
+}
+
+:where(
+  ul[class],
+  ol[class]
+) {
+  padding: 0;
+  list-style: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: .01ms;
+    animation-iteration-count: 1;
+    transition-duration: .01ms;
+  }
+}

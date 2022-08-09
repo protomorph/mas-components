@@ -1,0 +1,31 @@
+//
+// Components Elevation Mixins SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:map";
+@use "variables" as *;
+
+//
+// Element interaction.
+// @param {number} $level Element elevation: (0 - 24)
+// @param {color} [$color] Shadow color - (default: black)
+//
+@mixin elevation(
+  $level,
+  $color: black
+) {
+  $umbra-z-value: map.get($umbra-map, $level);
+  $penumbra-z-value: map.get($penumbra-map, $level);
+  $ambient-z-value: map.get($ambient-map, $level);
+
+  $umbra-color: rgba($color, $umbra-opacity);
+  $penumbra-color: rgba($color, $penumbra-opacity);
+  $ambient-color: rgba($color, $ambient-opacity);
+
+  box-shadow:
+    #{$umbra-z-value} #{$umbra-color},
+    #{$penumbra-z-value} #{$penumbra-color},
+    #{$ambient-z-value} #{$ambient-color}
+  ;
+}

@@ -1,0 +1,30 @@
+//
+// Components Chip Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:math";
+
+$chip-bg-color: rgb(127 127 127 / .16);
+$chip-fg-color: rgb(0 0 0 / .84);
+$chip-block-size: 2.25rem;
+$chip-inline-padding: 1rem;
+$chip-gap: .5rem;
+$chip-fz: 1rem;
+$chip-lh: 1.5rem;
+$chip-bd-radius: math.div($chip-block-size, 2);
+
+$chip-outlined-bd-width: .125rem;
+
+$chip-lead-bg-color: rgb(0 0 0 / .86);
+$chip-lead-fg-color: rgb(255 255 255 / .76);
+$chip-lead-size: 1.5rem;
+$chip-lead-offset: .5rem;
+$chip-lead-inline-padding: .375rem;
+$chip-lead-fz: .75rem;
+$chip-lead-bd-radius: math.div($chip-lead-size, 2);
+
+$chip-icon-size: 1.5rem;
+$chip-icon-offset: .5rem;
+
+$chip-group-space: .75rem;

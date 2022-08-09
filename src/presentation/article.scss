@@ -1,0 +1,158 @@
+//
+// Components Presentation Article SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "../theme/variables" as theme-variable;
+@use "variables" as *;
+
+// Article.
+// -------------------------
+
+.article {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-block-start: $article-offset;
+  color: $article-fg-color;
+  background-color: $article-bg-color;
+  border-end-end-radius: $article-bd-radius;
+  border-end-start-radius: $article-bd-radius;
+}
+
+// Article header.
+// -------------------------
+
+.article__header {
+  display: flex;
+  flex-direction: column;
+  gap: $article-header-gap;
+  padding-block-start: $article-header-padding-block;
+  padding-inline: $article-header-padding-inline;
+}
+
+// Article title.
+// -------------------------
+
+.article__title {
+  margin: 0;
+}
+
+// Article description.
+// -------------------------
+
+.article__description {
+  margin: 0;
+  font-size: $article-description-fz;
+  font-weight: $article-description-fw;
+  letter-spacing: $article-description-fw;
+}
+
+// Article meta.
+// -------------------------
+
+.article__meta {
+  display: flex;
+  flex-direction: column;
+  gap: $article-meta-gap;
+
+  &:where(.center) {
+    align-items: center;
+    margin: auto;
+  }
+}
+
+// Article author.
+// -------------------------
+
+.article__author {
+  margin: 0;
+  font-size: $article-author-fz;
+  font-weight: 500;
+}
+
+// Article posted.
+// -------------------------
+
+.article__posted {
+  margin: 0;
+  font-size: $article-posted-fz;
+  font-weight: 500;
+  opacity: .64;
+}
+
+// Article content.
+// -------------------------
+
+.article__content {
+  padding: $article-content-padding;
+  font-size: $article-content-fz;
+}
+
+// Article footer.
+// -------------------------
+
+.article__footer {
+  display: flex;
+  flex-direction: column;
+  gap: $article-footer-gap;
+  padding-block-end: $article-footer-padding-block;
+  padding-inline: $article-footer-padding-inline;
+}
+
+// Article categories.
+// -------------------------
+
+.article__categories {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $article-categories-gap;
+
+  a:not([class]) {
+    font-weight: 500;
+  }
+
+  a:not(:hover) {
+    text-decoration: none;
+  }
+}
+
+// Article share.
+// -------------------------
+
+.article__share {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $article-share-gap;
+}
+
+// Article spacer.
+// -------------------------
+
+.article__underline {
+  block-size: $article-underline-block-size;
+  background-image: radial-gradient(
+    rgb(0 0 0 / .76) 10%,
+    rgb(0 0 0 / 0) 60%
+  );
+  background-size: cover;
+
+  &:where(.margin-end) {
+    margin-block-end: $article-underline-margin;
+  }
+
+  &:where(.margin-start) {
+    margin-block-start: $article-underline-margin;
+  }
+
+  @each $name, $color in theme-variable.$color-map {
+    &:where(.#{$name}) {
+      background-image: radial-gradient(
+        rgba($color, .76) 10%,
+        rgba($color, 0) 60%
+      );
+    }
+  }
+}

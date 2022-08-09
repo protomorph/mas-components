@@ -1,0 +1,41 @@
+{% extends "layout/default.html" %}
+
+{% block content %}
+  <h1>{{ pageTitle }}</h1>
+
+  <div class="grid xs:3">
+    <div></div>
+    <div class="flex flex--justify-center">
+      <button class="button filled pill dark" data-dialog="demo-dialog" data-interaction="ripple">Dialog</button>
+    </div>
+    <div></div>
+  </div>
+
+  <div class="dialog"
+       id="demo-dialog"
+       role="alertdialog"
+       aria-model="true"
+       aria-labelledby="demo-dialog-label"
+       aria-describedby="demo-dialog-description"
+       aria-hidden="true">
+    <div class="dialog__surface elevation:8" data-surface="dialog">
+      <h2 class="dialog__title" id="demo-dialog-label">Dialog Title</h2>
+
+      <section class="dialog__content" id="demo-dialog-description">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Tenetur quae numquam corporis soluta nostrum quo quos, eum reiciendis, neque ad, nam voluptas quam.
+        Laborum aut minus, fuga quisquam porro eaque?
+      </section>
+
+      <footer class="dialog__actions">
+        <button class="button text pill" data-action="cancel" data-interaction="ripple">Cancel</button>
+        <button class="button outlined pill indigo" data-action="accept" data-interaction="ripple">OK</button>
+      </footer>
+
+      <button class="dialog__button icon button text" data-dismiss="dialog" data-interaction="ripple" data-bound="true">
+        <span class="icons mdi mdi-close"></span>
+      </button>
+    </div>
+    <div class="dialog__backdrop" aria-hidden="true" data-backdrop="dialog"></div>
+  </div>
+{% endblock %}

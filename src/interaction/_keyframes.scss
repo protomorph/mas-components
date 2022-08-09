@@ -1,0 +1,58 @@
+//
+// Components Interaction Keyframes SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "variables" as *;
+
+@keyframes interaction-animation-in {
+  0% {
+    opacity: 0;
+  }
+  60%, 100% {
+    opacity: $interaction-animation-fill-opacity;
+  }
+}
+
+@keyframes interaction-animation-out {
+  0% {
+    opacity: $interaction-animation-fill-opacity;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes interaction-stroke-animation {
+  0%, 33% {
+    opacity: $interaction-animation-stroke-opacity;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes interaction-fill-ripple-animation-in {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  10% {
+    opacity: $interaction-animation-fill-opacity;
+  }
+  100% {
+    opacity: $interaction-animation-fill-opacity;
+    transform: scale(var(--interaction-scale, 1));
+  }
+}
+
+@keyframes interaction-fill-ripple-animation-out {
+  from {
+    opacity: $interaction-animation-fill-opacity;
+    transform: scale(var(--interaction-scale, 1));
+  }
+  to {
+    opacity: 0;
+    transform: scale(var(--interaction-scale, 1));
+  }
+}

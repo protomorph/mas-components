@@ -1,0 +1,67 @@
+//
+// Components Presentation Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:map";
+@use "../grid/variables" as grid-variable;
+@use "../theme/variables" as theme-variable;
+@use "../typography/variables" as typography-variable;
+
+$-article-description-font: map.get(typography-variable.$headings-size-map, 5);
+$-article-content-font: map.get(typography-variable.$fluid-font-size-map, "500");
+
+$-highlight-title-font: map.get(typography-variable.$fluid-font-size-map, "600");
+
+$breakpoint: map.get(grid-variable.$grid-breakpoints, "md");
+$breakpoint-max: $breakpoint - 0.02;
+
+// Article.
+
+$article-bg-color: white;
+$article-fg-color: rgba(black, .86);
+$article-padding: theme-variable.$padding;
+$article-margin: theme-variable.$padding;
+$article-offset: -(theme-variable.$padding);
+$article-bd-radius: theme-variable.$bd-radius;
+
+$article-header-gap: .75rem;
+$article-header-padding-block: $article-padding * 1.5;
+$article-header-padding-inline: $article-padding;
+
+$article-description-fz: map.get($-article-description-font, "font-size");
+$article-description-fw: map.get($-article-description-font, "font-weight");
+$article-description-ls: map.get($-article-description-font, "letter-spacing");
+
+$article-meta-gap: .125rem;
+
+$article-author-fz: 1.125rem;
+
+$article-posted-fz: 1rem;
+
+$article-content-padding: $article-padding;
+$article-content-fz: map.get($-article-content-font, "font-size");
+
+$article-footer-gap: .75rem;
+$article-footer-padding-block: $article-padding;
+$article-footer-padding-inline: $article-padding;
+
+$article-categories-gap: .75rem;
+
+$article-share-gap: .75rem;
+
+$article-underline-block-size: .25rem;
+$article-underline-margin: theme-variable.$padding;
+
+// Banner.
+
+$banner-gap: theme-variable.$padding;
+$banner-padding-block: 2.5rem;
+$banner-padding-inline: theme-variable.$padding;
+
+// Highlight.
+
+$highlight-gap: theme-variable.$padding;
+$highlight-bd-radius: theme-variable.$bd-radius;
+$highlight-title-fz: map.get($-highlight-title-font, "font-size");
+$highlight-title-ls: map.get($-highlight-title-font, "letter-spacing");

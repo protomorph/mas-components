@@ -1,0 +1,104 @@
+//
+// Components Theme Mixins SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "variables" as *;
+
+//
+// Element interaction.
+// @param {number} [$hover] Element interaction hover opacity between: (0 - 1)
+// @param {number} [$focus] Element interaction focus opacity between: (0 - 1)
+// @param {number} [$active] Element interaction active opacity between: (0 - 1)
+// @param {string} [$duration] Element interaction duration
+//
+@mixin interaction-state(
+  $hover: .08,
+  $focus: .08,
+  $active: .16,
+  $duration: 120ms,
+  $ease: cubic-bezier(.4, 0, .2, 1)
+) {
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    content: "";
+    background-color: currentColor;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    will-change: opacity;
+    transition: opacity $duration $ease;
+  }
+
+  &:hover::after {
+    opacity: $hover;
+  }
+
+  &:focus-visible::after {
+    opacity: $focus;
+  }
+
+  &:active::after {
+    opacity: $active;
+  }
+}
+
+//
+// Style a scrollable elements scrollbar.
+// @param {color} $track scrollbar track color
+// @param {color} $thumb scrollbar thumb color
+// @param {boolean} [$thin] should scrollbar width be thin (true or false)
+// @param {map} [$webkit] webkit-scrollbar-thumb border styling options map ("border", "radius").
+//
+@mixin style-scrollbar(
+  $track,
+  $thumb,
+  $thin: 0,
+  $webkit: ()
+) {
+  // -webkit-scrollbar-thumb border styling defaults.
+  $wk: map-merge(("border": 0, "radius": 0), $webkit);
+
+  // scrollbars for webkit browsers.
+  // @supports selector(::-webkit-scrollbar) {
+    &::-webkit-scrollbar {
+      // size similar to `scrollbar-width`
+      width: if($thin == true, 8px, 17px);
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $track;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $thumb;
+      // -webkit-scrollbar-thumb border styling.
+      border: map-get($wk, "border");
+      border-radius: map-get($wk, "radius");
+    }
+  // }
+
+  // for browsers that support
+  // scrollbar property.
+  @supports (scrollbar-width: thin) {
+    scrollbar-width: if($thin == true, thin, auto);
+    scrollbar-color: $thumb $track;
+  }
+}
+
+//
+// Loop through all colors in a color map,
+// passing `$name` and `$color` to the content.
+// @param {map} [$colors] A map of colors to be used.
+//
+@mixin theme-colors($colors: $color-map) {
+  @each $name, $color in $colors {
+    @content($name, $color);
+  }
+}

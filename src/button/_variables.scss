@@ -1,0 +1,49 @@
+//
+// Components Button Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:math";
+@use "../theme/variables" as theme-variable;
+
+$button-fz: 1rem;
+$button-fw: 500;
+$button-lh: 1.5rem;
+$button-ls: .0375em;
+$button-bd-radius: theme-variable.$bd-radius;
+
+$button-padding-inline: 1rem;
+
+$button-gap: .625rem;
+$button-block-size: 2.5rem;
+
+$button-pill-bd-radius: math.div($button-block-size, 2);
+
+$button-filled-padding-inline: 1.25rem;
+
+$button-outline-width: theme-variable.$outline-width;
+
+$button-cta-gap: .75rem;
+$button-cta-block-size: 3.5rem;
+$button-cta-padding: 1rem;
+$button-cta-bd-radius: 1.75rem;
+
+$button-cta-mini-gap: .625rem;
+$button-cta-mini-block-size: 3rem;
+$button-cta-mini-padding: .75rem;
+$button-cta-mini-bd-radius: 1.5rem;
+
+$button-icon-inline-size: 2.5rem;
+$button-icon-bd-radius: 1.25rem;
+$button-icon-padding: .5rem;
+
+$button-focus-outline-offset: theme-variable.$outline-offset;
+$button-focus-outline-width: theme-variable.$outline-width;
+
+$icon-size: 1.25rem;
+$icon-offset: .125rem;
+$icon-size-lg: 1.5rem;
+$icon-offset-lg: .4375rem;
+
+$button-disabled-bg-color: theme-variable.$disabled-bg-color;
+$button-disabled-fg-color: theme-variable.$disabled-fg-color;

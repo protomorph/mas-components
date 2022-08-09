@@ -1,0 +1,45 @@
+//
+// Components Grid Functions SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:map";
+@use "variables" as *;
+
+//
+// @private
+// @param {string} $name Breakpoint name
+// @param {map} $breakpoint-names List of brekpoint names
+// @returns {number|null}
+//
+@function -responsive-next($name, $breakpoint-names: map.keys($grid-breakpoints)) {
+  $index: index($breakpoint-names, $name);
+
+  @return if(
+    $index != null and $index < length($breakpoint-names),
+    nth($breakpoint-names, $index + 1),
+    null
+  );
+}
+
+//
+// @param {string} $name Breakpoint min name
+// @param {map} $breakpoints Map of breakpoints
+// @returns {number|null}
+//
+@function responsive-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map.get($breakpoints, $name);
+
+  @return if($min != 0, $min, null);
+}
+
+//
+// @param {string} $name Breakpoint max name
+// @param {map} $breakpoints Map of breakpoints
+// @returns {number|null}
+//
+@function responsive-max($name, $breakpoints: $grid-breakpoints) {
+  $next: -responsive-next($name);
+
+  @return if($next, responsive-min($next, $breakpoints) - 0.02, null);
+}

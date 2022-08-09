@@ -1,0 +1,14 @@
+{% extends "layout/default.html" %}
+
+{% block content %}
+  <h1>{{ pageTitle }}</h1>
+
+
+  <div class="grid xs:3 md:6">
+    {% for i in range(1, 25) %}
+      <div class="card elevation:{{ i }}">
+        <div class="card__content">{{ i }}</div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

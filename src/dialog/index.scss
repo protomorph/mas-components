@@ -1,0 +1,125 @@
+//
+// Components Dialog SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "variables" as *;
+
+// Dialog.
+// -------------------------
+
+.dialog {
+  position: fixed;
+  inset: 0;
+  z-index: $dialog-z-index;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+  font-family: inherit;
+
+  &:where(:not([data-open="true"])) {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+// Dialog surface.
+// -------------------------
+
+.dialog__surface {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  inline-size: $dialog-inline-size;
+  max-inline-size: $dialog-max-inline-size;
+  background-color: $dialog-bg-color;
+  border-radius: $dialog-bd-radius;
+  transform-origin: center;
+
+  :where(:not([data-visible="true"])) & {
+    opacity: 0;
+    transform: scale(.975) translatey(-1rem);
+    transition:
+      opacity 150ms cubic-bezier(.4, 0, .2, 1) 0ms,
+      transform 0ms ease-in 150ms
+    ;
+  }
+
+  :where([data-visible="true"]) & {
+    opacity: 1;
+    transform: scale(1) translatey(0rem);
+    transition:
+      opacity 150ms cubic-bezier(.4, 0, .2, 1) 200ms,
+      transform 200ms ease-in-out 200ms
+    ;
+  }
+}
+
+// Dialog title.
+// -------------------------
+
+.dialog__title {
+  margin: 0;
+  padding-block: $dialog-title-padding-block;
+  padding-inline: $dialog-padding-inline;
+  font-size: $dialog-title-fz;
+  font-weight: 400;
+  letter-spacing: $dialog-title-ls;
+  line-height: calc(2px + 2ex + 2px);
+}
+
+// Dialog button (close button).
+// -------------------------
+
+.dialog__button {
+  position: absolute;
+  inset-block-start: $dialog-button-inset-block-start;
+  inset-inline-end: $dialog-button-inset-inline-end;
+}
+
+// Dialog content.
+// -------------------------
+
+.dialog__content {
+  flex: 1;
+  padding-block: $dialog-content-padding-block;
+  padding-inline: $dialog-padding-inline;
+  font-size: $dialog-content-fz;
+  letter-spacing: $dialog-content-ls;
+  line-height: calc(.125em + 2ex + .25em);
+}
+
+// Dialog actions.
+// -------------------------
+
+.dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $dialog-actions-gap;
+  padding-block: $dialog-actions-padding-block;
+  padding-inline: $dialog-padding-inline;
+}
+
+// Dialog backdrop.
+// -------------------------
+
+.dialog__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  block-size: 100%;
+  inline-size: 100%;
+  background-color: $dialog-backdrop-color;
+
+  :where(:not([data-visible="true"])) & {
+    opacity: 0;
+    transition: opacity 150ms cubic-bezier(.4, 0, .2, 1) 200ms;
+  }
+
+  :where([data-visible="true"]) & {
+    opacity: 1;
+    transition: opacity 200ms cubic-bezier(.4, 0, .2, 1);
+  }
+}

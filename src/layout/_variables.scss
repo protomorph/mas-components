@@ -1,0 +1,30 @@
+//
+// Components Layout Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:map";
+@use "../theme/variables" as theme-variable;
+@use "../theme/functions" as theme-function;
+
+$layout-header-padding-block: theme-variable.$padding * 1.5;
+$layout-header-padding-inline: theme-variable.$padding;
+
+$layout-main-padding: theme-variable.$padding;
+
+$layout-footer-padding-block-end: theme-variable.$padding;
+$layout-footer-padding-block-start: 2rem;
+$layout-footer-padding-inline: theme-variable.$padding;
+$layout-footer-fz: .875rem;
+$layout-footer-lh: 1.125rem;
+$layout-footer-bg-color: map.get(theme-variable.$color-map, "dark");
+$layout-footer-fg-color: theme-function.color-contrast($layout-footer-bg-color, theme-variable.$text-dark, theme-variable.$text-light);
+
+$layout-footer-list-gap: .25rem;
+
+$layout-footer-list-title-padding: .5rem;
+
+$layout-footer-list-link-padding: .5rem;
+
+$layout-footer-block-size: .0625rem;
+$layout-footer-spacer-margin: theme-variable.$padding;

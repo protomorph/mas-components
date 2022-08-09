@@ -1,0 +1,83 @@
+//
+// Components Typography Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+$fluid-font-size-map: (
+  "200": (
+    "font-size": clamp(.625rem, .75vw + 1rem, .75rem),
+    "font-weight": 400,
+    "letter-spacing": .02625em
+  ),
+  "300": (
+    "font-size": clamp(.75rem, .75vw + 1rem, .875rem),
+    "font-weight": 400,
+    "letter-spacing": .025em
+  ),
+  "400": (
+    "font-size": clamp(.875rem, .75vw + 1rem, 1rem),
+    "font-weight": 400,
+    "letter-spacing": .0275em
+  ),
+  "500": (
+    "font-size": clamp(1rem, .875vw + 1rem, 1.125rem),
+    "font-weight": 400,
+    "letter-spacing": .025em
+  ),
+  "600": (
+    "font-size": clamp(1.125rem, 1.125vw + 1rem, 1.25rem),
+    "font-weight": 400,
+    "letter-spacing": .02em
+  ),
+  "700": (
+    "font-size": clamp(1.25rem, 1.5vw + 1rem, 1.5rem),
+    "font-weight": 400,
+    "letter-spacing": .015em
+  ),
+  "800": (
+    "font-size": clamp(1.5rem, 2.25vw + 1rem, 2rem),
+    "font-weight": 400,
+    "letter-spacing": 0
+  ),
+);
+
+$headings-size-map: (
+  1: (
+    "font-size": clamp(2.5rem, 6vw + 1rem, 3.5rem),
+    "font-weight": 300,
+    "letter-spacing": -.015em,
+    "margin": .375em
+  ),
+  2: (
+    "font-size": clamp(2rem, 4.25vw + 1rem, 3rem),
+    "font-weight": 300,
+    "letter-spacing": -.0125em,
+    "margin": .5em
+  ),
+  3: (
+    "font-size": clamp(1.75rem, 3.5vw + 1rem, 2.5rem),
+    "font-weight": 300,
+    "letter-spacing": -.01em,
+    "margin": .5em
+  ),
+  4: (
+    "font-size": clamp(1.5rem, 2.25vw + 1rem, 2rem),
+    "font-weight": 400,
+    "letter-spacing": 0,
+    "margin": .625em
+  ),
+  5: (
+    "font-size": clamp(1.25rem, 1.5vw + 1rem, 1.5rem),
+    "font-weight": 400,
+    "letter-spacing": .015em,
+    "margin": .75em
+  ),
+  6: (
+    "font-size": clamp(1rem, 1.125vw + 1rem, 1.125rem),
+    "font-weight": 500,
+    "letter-spacing": .025em,
+    "margin": .875em
+  )
+);
+
+$p-margin-block: 1.25rem;

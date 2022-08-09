@@ -1,0 +1,109 @@
+//
+// Components Layout SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "variables" as *;
+
+// Layout.
+// -------------------------
+
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+
+// Header.
+// -------------------------
+
+.layout__header {
+  display: flex;
+  flex-direction: column;
+  padding-block: $layout-header-padding-block;
+  padding-inline: $layout-header-padding-inline;
+
+  &:where(.vh\:100) {
+    min-block-size: 100vh;
+  }
+
+  &:where(.vh\:75) {
+    min-block-size: 75vh;
+  }
+
+  &:where(.vh\:50) {
+    min-block-size: 50vh;
+  }
+}
+
+// Main.
+// -------------------------
+
+.layout__main {
+  flex: 1;
+  padding: $layout-main-padding;
+}
+
+// Footer.
+// -------------------------
+
+.layout__footer {
+  display: flex;
+  flex-direction: column;
+  padding-block-end: $layout-footer-padding-block-end;
+  padding-block-start: $layout-footer-padding-block-start;
+  padding-inline: $layout-footer-padding-inline;
+  font-size: $layout-footer-fz;
+  line-height: $layout-footer-lh;
+  color: $layout-footer-fg-color;
+  background-color: $layout-footer-bg-color;
+}
+
+// Footer list.
+
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: $layout-footer-list-gap;
+}
+
+// Footer list title.
+
+.footer__title {
+  margin: 0;
+  padding-block: $layout-footer-list-title-padding;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+// Footer link.
+
+.footer__link {
+  display: inline-block;
+  font-weight: 500;
+  color: currentColor;
+  opacity: .64;
+
+  &:hover {
+    opacity: .84;
+  }
+
+  &:focus-visible {
+    outline-color: currentColor;
+    outline-offset: .0625rem;
+    outline-style: solid;
+    outline-width: .125rem;
+  }
+
+  .footer__list & {
+    padding-block: $layout-footer-list-link-padding;
+  }
+}
+
+// Footer spacer.
+
+.footer__spacer {
+  block-size: $layout-footer-block-size;
+  margin-block: $layout-footer-spacer-margin;
+  background-color: currentColor;
+  opacity: .26;
+}

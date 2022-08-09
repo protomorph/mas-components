@@ -1,0 +1,40 @@
+//
+// Components Theme Functions SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:math";
+
+//
+// @private
+// @param {color} $color The color to test
+// @param {number} $threshold The contrast threshold value
+// @returns {boolean}
+//
+@function -color-contrast-test(
+  $color, $threshold
+) {
+  $r: red($color);
+  $g: green($color);
+  $b: blue($color);
+
+  $yiq: math.div((($r * 299) + ($g * 587) + ($b * 114)), 1000);
+
+  @return if($yiq >= $threshold, true, false);
+}
+
+//
+// @param {color} $base The base color to contrast against
+// @param {color} [$dark] A dark color for light background
+// @param {color} [$light] A light color for dark background
+// @param {number} [$threshold] The contrast threshold value
+// @returns {color}
+//
+@function color-contrast(
+  $base,
+  $dark: black,
+  $light: white,
+  $threshold: 135
+) {
+  @return if(-color-contrast-test($base, $threshold), $dark, $light);
+}

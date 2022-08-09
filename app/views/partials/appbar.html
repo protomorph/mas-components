@@ -1,0 +1,28 @@
+
+<nav class="appbar fixed elevation:6" data-appbar>
+  <section class="appbar__lead">
+    <button class="button icon" data-drawer="main-drawer" data-interaction="ripple" data-bound="true">
+      <span class="icons material">more_vert</span>
+    </button>
+
+    <a href="/" class="appbar__brand" data-interaction>Components</a>
+
+    <button class="appbar__button" type="button" data-target="appbar-menu" data-toggle="collapse" data-interaction="ripple">
+      Menu
+      <span class="appbar__button-icon" role="presentation">
+        <span class="icons material appbar__button-icon-show">menu</span>
+        <span class="icons material appbar__button-icon-hide">close</span>
+      </span>
+    </button>
+  </section>
+
+  <section class="appbar__collapse" id="appbar-menu">
+    <div class="appbar__menu" tabindex="-1">
+      {% for item in menu %}
+        {% if item.menu %}
+          <a class="appbar__link" href="{{ item.path }}" data-interaction>{{ item.name }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+</nav>

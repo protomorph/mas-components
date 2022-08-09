@@ -1,0 +1,38 @@
+//
+// Components Grid Mixins SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "variables" as *;
+@use "functions" as *;
+
+//
+// Create responsive breakpoint.
+// @param {string} $lower Min width breakpoint name
+// @param {string} [$upper] Max width breakpoint name
+// @param {map} [$breakpoints] Map of breakpoints
+//
+@mixin responsive-breakpoint(
+  $lower,
+  $upper: null,
+  $breakpoints: $grid-breakpoints
+) {
+  $min: responsive-min($lower, $breakpoints);
+  $max: if($upper != null, responsive-max($upper, $breakpoints), null);
+
+  @if $min != null and $max != null {
+    @media (min-width: #{$min}) and (max-width: #{$max}) {
+      @content;
+    }
+  } @else if $min == null and $max == null {
+    @content;
+  } @else if $max == null {
+    @media (min-width: #{$min}) {
+      @content;
+    }
+  } @else if $min == null {
+    @media (max-width: #{$max}) {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+//
+// Components Elevation SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "mixins" as *;
+@use "variables" as *;
+
+// Elevation.
+// -------------------------
+
+[class*="elevation"] {
+  will-change: box-shadow;
+  transition: all $elevation-duration $elevation-ease;
+}
+
+// Elevation depth.
+// -------------------------
+
+@for $level from 0 through 24 {
+  .elevation\:#{$level},
+  [class~="hover:#{$level}"]:where(:hover),
+  [class~="active:#{$level}"]:where(:active) {
+    @include elevation($level);
+  }
+}

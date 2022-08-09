@@ -1,0 +1,220 @@
+//
+// Components Button SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "../theme/variables" as theme-variable;
+@use "../theme/functions" as theme-function;
+@use "../theme/mixins" as theme-mixin;
+@use "variables" as *;
+
+// Button
+// -------------------------
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-size: $button-fz;
+  font-weight: $button-fw;
+  letter-spacing: $button-ls;
+  line-height: $button-lh;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:where(a) {
+    user-select: none;
+  }
+
+  &:focus-visible {
+    outline-offset: $button-focus-outline-offset;
+    outline-style: solid;
+    outline-width: $button-focus-outline-width;
+  }
+
+  @include theme-mixin.interaction-state(
+    .1, .06, .26, 150ms
+  );
+}
+
+// Button types.
+// --------------------
+
+.button:where(.text, .filled, .outlined) {
+  gap: $button-gap;
+
+  &:where(:not(.icon)) {
+    block-size: $button-block-size;
+  }
+
+  &:where(:not(
+    .cta, .icon, .pill
+  )) {
+    border-radius: $button-bd-radius;
+  }
+
+  &:where(.pill):where(:not(
+    .cta, .icon
+  )) {
+    border-radius: $button-pill-bd-radius;
+  }
+}
+
+.button:where(.text, .outlined):is(:focus-visible) {
+  outline-color: currentColor;
+}
+
+.button:where(.text):where(:not(.icon)) {
+  padding-inline: $button-padding-inline;
+}
+
+.button:where(.filled):where(:not(.icon)) {
+  padding-inline: $button-filled-padding-inline;
+}
+
+.button:where(.outlined):where(:not(.icon)) {
+  padding-inline: $button-padding-inline - $button-outline-width;
+}
+
+.button:where(.outlined) {
+  border: $button-outline-width solid currentColor;
+
+  > .interaction {
+    inset: -($button-outline-width);
+  }
+}
+
+// CTA button.
+// --------------------
+
+.button:where(.cta) {
+  inline-size: auto;
+
+  &:where(:not(.mini)) {
+    gap: $button-cta-gap;
+    block-size: $button-cta-block-size;
+    padding: $button-cta-padding;
+  }
+
+  &:where(:not(.mini, .rounded)) {
+    border-radius: $button-cta-bd-radius;
+  }
+
+  &:where(.mini) {
+    gap: $button-cta-mini-gap;
+    block-size: $button-cta-mini-block-size;
+    padding: $button-cta-mini-padding;
+  }
+
+  &:where(.mini):where(:not(.rounded)) {
+    border-radius: $button-cta-mini-bd-radius;
+  }
+
+  &:where(.rounded) {
+    border-radius: $button-bd-radius;
+  }
+}
+
+// Icon button.
+// --------------------
+
+.button:where(.icon) {
+  inline-size: $button-icon-inline-size;
+  border-radius: $button-icon-bd-radius;
+
+  &:where(:not(.outlined)) {
+    padding: $button-icon-padding;
+  }
+
+  &:where(.outlined) {
+    padding: $button-icon-padding - $button-outline-width;
+  }
+}
+
+// Icon.
+// --------------------
+
+.button__icon {
+  pointer-events: none;
+}
+
+.button:where(:not(.icon-end)) .button__icon {
+  order: -1;
+}
+
+.button:where(.icon-end) .button__icon {
+  order: 999;
+}
+
+.button:where(:not(.icon, .cta)) .button__icon {
+  block-size: $icon-size;
+  inline-size: $icon-size;
+  font-size: $icon-size;
+}
+
+.button:where(.cta, .icon) .button__icon {
+  block-size: $icon-size-lg;
+  inline-size: $icon-size-lg;
+  font-size: $icon-size-lg;
+}
+
+.button:where(:not(
+  .icon-end, .filled, .icon, .cta
+)) .button__icon {
+  margin-inline-start: -($icon-offset);
+}
+
+.button:where(.filled):where(:not(
+  .icon-end, .icon, .cta
+)) .button__icon {
+  margin-inline-start: -($icon-offset-lg);
+}
+
+.button:where(.icon-end):where(:not(
+  .filled, .icon, .cta
+)) .button__icon {
+  margin-inline-end: -($icon-offset);
+}
+
+.button:where(.icon-end):where(.filled):where(:not(.icon)) .button__icon {
+  margin-inline-end: -($icon-offset-lg);
+}
+
+// Themed.
+// --------------------
+
+@include theme-mixin.theme-colors using ($name, $color) {
+  .button:where(.text, .outlined):where(.#{$name}) {
+    color: $color;
+  }
+
+  .button:where(.cta, .filled):where(.#{$name}) {
+    color: theme-function.color-contrast($color, theme-variable.$text-dark, theme-variable.$text-light);
+    background-color: $color;
+
+    &:focus-visible {
+      outline-color: $color;
+    }
+  }
+}
+
+// Disabled.
+// --------------------
+
+.button:is(:disabled, [disabled], [aria-disabled="true"]) {
+  color: $button-disabled-fg-color;
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
+  box-shadow: none;
+}
+
+.button:where(.cta, .filled):is(
+  :disabled, [disabled], [aria-disabled="true"]
+) {
+  background-color: $button-disabled-bg-color;
+}

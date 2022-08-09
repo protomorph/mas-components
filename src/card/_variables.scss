@@ -1,0 +1,41 @@
+//
+// Components Card Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:map";
+@use "../theme/variables" as theme-variable;
+@use "../typography/variables" as typography-variable;
+
+$-typography-base: map.get(typography-variable.$fluid-font-size-map, "400");
+$-typography-head: map.get(typography-variable.$fluid-font-size-map, "800");
+$-typography-sub: map.get(typography-variable.$fluid-font-size-map, "600");
+
+$card-margin: 1.5rem;
+$card-bg-color: white;
+$card-bd-radius: theme-variable.$bd-radius;
+$card-outline-offset: .125rem;
+$card-outline-width: .125rem;
+
+$card-title-padding-block: 1.25rem;
+$card-title-padding-inline: theme-variable.$padding;
+$card-title-fz: map.get($-typography-head, "font-size");
+$card-title-ls: map.get($-typography-head, "letter-spacing");
+$card-title-lh: calc(2px + 2ex + 2px);
+
+$card-subtitle-padding-block: .25rem .875rem;
+$card-subtitle-fz: map.get($-typography-sub, "font-size");
+$card-subtitle-ls: map.get($-typography-sub, "letter-spacing");
+$card-subtitle-opacity: .76;
+
+$card-content-padding-block: 1.125rem;
+$card-content-padding-inline: theme-variable.$padding;
+$card-content-fz: map.get($-typography-base, "font-size");
+$card-content-ls: map.get($-typography-base, "letter-spacing");
+$card-content-lh: calc(.125em + 2ex + .25em);
+
+$card-actions-gap: .75rem;
+$card-actions-padding-block: 1.25rem;
+$card-actions-padding-inline: theme-variable.$padding;
+
+$card-action-gap: .875rem;

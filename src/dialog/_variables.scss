@@ -1,0 +1,49 @@
+//
+// Components Dialog Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:map" as map;
+@use "../theme/variables" as theme-variable;
+@use "../typography/variables" as typography-variable;
+
+// Typography.
+
+$-typography-content: map.get(typography-variable.$fluid-font-size-map, "400");
+$-typography-title: map.get(typography-variable.$fluid-font-size-map, "700");
+
+// Surface.
+
+$dialog-z-index: 30;
+$dialog-bg-color: white;
+$dialog-fg-color: rgba(black, .86);
+$dialog-bd-radius: theme-variable.$bd-radius;
+$dialog-inline-size: calc(100% - 3rem);
+$dialog-max-inline-size: 35rem;
+$dialog-padding-inline: 1.5rem;
+
+// Title.
+
+$dialog-title-fz: map.get($-typography-title, "font-size");
+$dialog-title-ls: map.get($-typography-title, "letter-spacing");
+$dialog-title-padding-block: 1.25rem;
+
+// Button (close button).
+
+$dialog-button-inset-inline-end: 1.5rem;
+$dialog-button-inset-block-start: 1rem;
+
+// Content.
+
+$dialog-content-fz: map.get($-typography-content, "font-size");
+$dialog-content-ls: map.get($-typography-content, "letter-spacing");
+$dialog-content-padding-block: 0;
+
+// Actions.
+
+$dialog-actions-gap: .75rem;
+$dialog-actions-padding-block: 1.125rem;
+
+// Backdrop.
+
+$dialog-backdrop-color: rgb(0 0 0 / .36);

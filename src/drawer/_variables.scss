@@ -1,0 +1,87 @@
+//
+// Components Drawer Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "../theme/variables" as theme-variable;
+@use "../appbar/variables" as appbar-variable;
+
+$drawer-z-index: 20;
+$drawer-inset-block-start-appbar: appbar-variable.$appbar-height;
+
+// Surface.
+
+$drawer-surface-gap: 1rem;
+$drawer-surface-inline-size: 17rem;
+$drawer-surface-bg-color: #fff;
+$drawer-surface-bd-radius: theme-variable.$bd-radius;
+
+// Header.
+
+$drawer-header-gap: .5rem;
+$drawer-header-block-size: 3.5rem;
+$drawer-header-padding-inline: 1.25rem;
+
+// Brand
+
+$drawer-brand-padding: .5rem;
+$drawer-brand-lh: 1rem;
+$drawer-brand-bd-radius: 1rem;
+
+// Guide.
+
+$drawer-scroll-padding-block: .5rem; // scroll offset.
+
+// Guide.
+
+$drawer-guide-inline-size: $drawer-surface-inline-size;
+
+// Menu.
+
+$drawer-menu-gap: .5rem;
+$drawer-menu-padding: 1rem;
+
+// Menu title.
+
+$drawer-title-padding: .5rem .75rem;
+$drawer-title-fz: .875rem;
+$drawer-title-lh: 1.125rem;
+
+// Menu item.
+
+$drawer-item-block-size: 2.5rem;
+$drawer-item-padding-inline: .75rem;
+$drawer-item-bd-radius: 1.25rem;
+
+// Menu item icon.
+
+$drawer-item-icon-gap: 1.5rem;
+$drawer-item-icon-size: 1.5rem;
+$drawer-item-icon-fz: $drawer-item-icon-size;
+
+// Menu item text.
+
+$drawer-item-text-fz: .875rem;
+$drawer-item-text-lh: 1.25rem;
+
+// Menu item divider.
+
+$drawer-item-divider-block-size: .0625rem;
+$drawer-item-divider-margin-block: .25rem;
+$drawer-item-divider-margin-inline: .75rem;
+
+// Footer.
+
+$drawer-footer-gap: .25rem;
+$drawer-footer-padding: .75rem 1.75rem 1rem;
+$drawer-footer-fz: .75rem;
+$drawer-footer-lh: 1.25rem;
+
+// Backdrop.
+
+$drawer-backdrop-color: rgb(0 0 0 / .36);
+
+// Link outline.
+
+$drawer-link-outline-offset: .125rem;
+$drawer-link-outline-width: .125rem;

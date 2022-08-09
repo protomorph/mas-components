@@ -1,0 +1,70 @@
+{% extends "layout/default.html" %}
+
+{% block content %}
+  <h1>{{ pageTitle }}</h1>
+
+  <div class="grid md:2 lg:3 has-margin">
+    <div class="card">
+      <img class="card__media bg-light" src="https://cdn.lorem.space/images/album/.cache/600x350/dark-side-of-the-moon_pink-floyd.jpg">
+      <h3 class="card__title">Default Card</h3>
+      <p class="card__subtitle">with text buttons</p>
+      <div class="card__content">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Fuga impedit consequuntur quo officiis ipsum minima.
+      </div>
+      <div class="card__actions">
+        <div class="card__buttons">
+          <button class="button text pill blue">Accept</button>
+          <button class="button text pill dark">Cancel</button>
+        </div>
+        <div class="card__icons">
+          <button class="button icon text blue">
+            <span class="button icons material">star</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card outlined:pink">
+      <img class="card__media" src="https://loremflickr.com/600/350/?random=2">
+      <h3 class="card__title">Outlined Card</h3>
+      <p class="card__subtitle">with filled buttons</p>
+      <div class="card__content">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        Inventore fugiat ratione hic, exercitationem fuga itaque?
+      </div>
+      <div class="card__actions">
+        <div class="card__buttons">
+          <button class="button filled pill pink">Accept</button>
+          <button class="button text pill dark">Cancel</button>
+        </div>
+        <div class="card__icons">
+          <button class="button icon filled pink">
+            <span class="button icons material">star</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card filled:dark">
+      <img class="card__media" src="https://loremflickr.com/600/350/?random=3">
+      <h3 class="card__title">Filled Card</h3>
+      <p class="card__subtitle">with outlined buttons</p>
+      <div class="card__content">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        Inventore fugiat ratione hic, exercitationem fuga itaque?
+      </div>
+      <div class="card__actions">
+        <div class="card__buttons">
+          <button class="button outlined pill orange">Accept</button>
+          <button class="button text pill light">Cancel</button>
+        </div>
+        <div class="card__icons">
+          <button class="button icon outlined orange">
+            <span class="button icons material">star</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

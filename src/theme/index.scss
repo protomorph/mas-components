@@ -1,0 +1,22 @@
+//
+// Components Theme SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "functions" as function;
+@use "variables" as variable;
+@use "mixins" as mixin;
+
+// Themed helpers.
+// -------------------------
+
+@include mixin.theme-colors using ($name, $color) {
+  .bg-#{$name} {
+    color: function.color-contrast($color, variable.$text-dark, variable.$text-light);
+    background-color: $color;
+  }
+
+  .text-#{$name} {
+    color: $color;
+  }
+}

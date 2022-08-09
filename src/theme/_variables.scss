@@ -1,0 +1,36 @@
+//
+// Components Theme Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+$color-map: (
+  "black": black,
+  "white": white,
+  "dark": #212121,
+  "light": #fafafa,
+  "blue": #007aff,
+  "green": #00c853,
+  "indigo": #3d5afe,
+  "orange": orange,
+  "pink": #f241b3,
+  "red": #d50000,
+  "yellow": #ffe503,
+  // brand colors.
+  "facebook": #1877f2,
+  "instagram": #e1306c,
+  "rss": #f26522,
+  "twitter": #1da1f2,
+  "youtube": #ff0000
+);
+
+$text-dark: rgba(black, .84);
+$text-light: rgba(white, .84);
+
+$disabled-bg-color: rgba(black, .12);
+$disabled-fg-color: rgba(black, .36);
+
+$bd-radius: .75rem;
+$padding: 1.5rem;
+
+$outline-offset: .125rem;
+$outline-width: .125rem;

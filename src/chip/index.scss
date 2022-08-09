@@ -1,0 +1,122 @@
+//
+// Components Chip SCSS.
+// @version 2.0.0
+// -------------------------
+
+@use "variables" as *;
+@use "../theme/mixins" as theme-mixin;
+
+// Chip.
+// -------------------------
+
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: $chip-gap;
+  block-size: $chip-block-size;
+  padding-inline: $chip-inline-padding;
+  font-size: $chip-fz;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: $chip-lh;
+  text-decoration: none;
+  color: $chip-fg-color;
+  background-color: $chip-bg-color;
+  border: none;
+  border-radius: $chip-bd-radius;
+  cursor: pointer;
+
+  @include theme-mixin.interaction-state;
+
+  &:where(.outlined)::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    border: $chip-outlined-bd-width solid currentcolor;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: .96;
+  }
+
+  &:focus-visible {
+    outline-color: currentcolor;
+    outline-offset: $chip-outlined-bd-width;
+    outline-style: solid;
+    outline-width: $chip-outlined-bd-width;
+  }
+}
+
+// Chip lead & avatar.
+// -------------------------
+
+.chip__lead,
+.chip__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  order: -1;
+  block-size: $chip-lead-size;
+  margin-inline-start: -($chip-lead-offset);
+  border-radius: $chip-lead-bd-radius;
+  pointer-events: none;
+}
+
+// Chip lead.
+// -------------------------
+
+.chip__lead {
+  min-inline-size: $chip-lead-size;
+  padding-inline: $chip-lead-inline-padding;
+  font-size: $chip-lead-fz;
+  font-weight: 500;
+  color: $chip-lead-fg-color;
+  background-color: $chip-lead-bg-color;
+  opacity: .92;
+}
+
+// Chip avatar.
+// -------------------------
+
+.chip__avatar {
+  inline-size: $chip-lead-size;
+  object-fit: cover;
+  object-position: center center;
+}
+
+// Chip icon.
+// -------------------------
+
+.chip__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  order: 9999;
+  block-size: $chip-icon-size;
+  inline-size: $chip-icon-size;
+  margin-inline-end: -($chip-icon-offset);
+  font-size: $chip-icon-size;
+  opacity: .84;
+}
+
+// Chip group.
+// -------------------------
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $chip-group-space;
+  margin-inline: auto;
+
+  &:where(.center) {
+    justify-content: center;
+  }
+
+  &:where(:not(.no-padding)) {
+    padding: $chip-group-space;
+  }
+
+  &:where(.has-margin) {
+    margin-block-end: $chip-group-space;
+  }
+}
