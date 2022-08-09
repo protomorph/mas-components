@@ -4,6 +4,19 @@
 // -------------------------
 
 @use "variables" as *;
+@use "../theme/mixins" as theme-mixin;
+
+// Document.
+// -------------------------
+
+html {
+  @include theme-mixin.style-scrollbar(
+    $crollbar-track-color, $crollbar-thumb-color, true
+  )
+}
+
+// Body.
+// -------------------------
 
 body {
   font-family: $body-ff;
