@@ -2730,11 +2730,11 @@ p:where(:not(:last-child)) {
 .textfield__input:where(textarea) {
   resize: vertical;
 }
-:where(.textfield--leading-icon) .textfield__input {
+:where(.leading-icon) .textfield__input {
   -webkit-padding-start: 3.5rem;
           padding-inline-start: 3.5rem;
 }
-:where(.textfield--trailing-icon) .textfield__input {
+:where(.trailing-icon) .textfield__input {
   -webkit-padding-end: 3.5rem;
           padding-inline-end: 3.5rem;
 }
