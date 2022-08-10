@@ -65,11 +65,11 @@
     resize: vertical;
   }
 
-  :where(.textfield--leading-icon) & {
+  :where(.leading-icon) & {
     padding-inline-start: $textfield-icon-input-padding;
   }
 
-  :where(.textfield--trailing-icon) & {
+  :where(.trailing-icon) & {
     padding-inline-end: $textfield-icon-input-padding;
   }
 
