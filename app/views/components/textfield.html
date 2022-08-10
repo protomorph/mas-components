@@ -1,0 +1,44 @@
+{% extends "layout/default.html" %}
+
+{% block content %}
+  <h1>{{ pageTitle }}</h1>
+
+  <div class="grid sm:2 md:4">
+    <fieldset class="textfield">
+      <input class="textfield__input" type="text" id="tf-1">
+      <label class="textfield__label" for="tf-1">Text input</label>
+      <span class="textfield__background" role="presentaion"></span>
+      <span class="textfield__focus" role="presentaion"></span>
+    </fieldset>
+
+    <fieldset class="textfield leading-icon">
+      <input class="textfield__input" type="text" id="tf-2">
+      <label class="textfield__label" for="tf-2">Leading icon</label>
+      <span class="textfield__background" role="presentaion"></span>
+      <span class="textfield__focus" role="presentaion"></span>
+      <i class="textfield__icon mdi mdi-mail" role="presentaion"></i>
+    </fieldset>
+
+    <fieldset class="textfield trailing-icon">
+      <input class="textfield__input" type="text" id="tf-3">
+      <label class="textfield__label" for="tf-3">Trailing icon</label>
+      <span class="textfield__background" role="presentaion"></span>
+      <span class="textfield__focus" role="presentaion"></span>
+      <i class="textfield__icon mdi mdi-mail" role="presentaion"></i>
+    </fieldset>
+
+    <fieldset class="textfield">
+      <input class="textfield__input" type="text" id="tf-d" disabled value="Disabled textfield">
+      <label class="textfield__label" for="tf-d">Disabled input</label>
+      <span class="textfield__background" role="presentaion"></span>
+      <span class="textfield__focus" role="presentaion"></span>
+    </fieldset>
+
+    <fieldset class="textfield">
+      <input class="textfield__input" type="text" id="tf-ro" readonly value="Read only textfield">
+      <label class="textfield__label" for="tf-ro">Readonly input</label>
+      <span class="textfield__background" role="presentaion"></span>
+      <span class="textfield__focus" role="presentaion"></span>
+    </fieldset>
+  </div>
+{% endblock %}

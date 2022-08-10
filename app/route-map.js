@@ -79,6 +79,13 @@ const routeMap = [
     view: 'components/presentation/highlight',
     menu: false,
     type: 'layout'
+  },
+  {
+    name: 'Textfield',
+    path: '/textfield',
+    view: 'components/textfield',
+    menu: true,
+    type: 'component'
   }
 ]
 
