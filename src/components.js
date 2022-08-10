@@ -5,6 +5,7 @@
 
 import Appbar from './appbar/index.js'
 import Drawer from './drawer/index.js'
+import Textfield from './textfield/index.js'
 import AlertDialog from './dialog/index.js'
 import Collapsible from './collapsible/index.js'
 import RippleInteractionElement from './interaction/ripple.js'
@@ -24,6 +25,10 @@ import RippleInteractionElement from './interaction/ripple.js'
     let drawer = new Drawer(document.getElementById(e.dataset.drawer))
     e.addEventListener('click', _ => drawer.toggle(_))
   })
+
+  document.querySelectorAll('.textfield').forEach(
+    e => new Textfield(e)
+  )
 
   document.querySelectorAll('[data-toggle="collapse"]').forEach(
     e => new Collapsible(e)

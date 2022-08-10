@@ -1,0 +1,267 @@
+//
+// Components Textfield SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "variables" as *;
+@use "../theme/variables" as theme-variable;
+
+// Textfield.
+// -------------------------
+
+.textfield {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-inline: 0;
+  padding: 0;
+  border: none;
+  font-size: $textfield-fz;
+  line-height: $textfield-lh;
+  color: $textfield-fg-color;
+  border-radius: $textfield-bd-radius;
+
+  &:where(:not([data-disabled="true"]), :not([data-readonly="true"])) {
+    cursor: text;
+  }
+
+  &:is([data-disabled="true"]) {
+    opacity: .42;
+    cursor: not-allowed;
+  }
+
+  &:is([data-readonly="true"]) {
+    opacity: .64;
+    cursor: default;
+  }
+}
+
+// Textfield input.
+// -------------------------
+
+.textfield__input {
+  display: block;
+  inline-size: 100%;
+  margin: 0;
+  padding: 0;
+  padding-block: $textfield-input-padding-block;
+  padding-inline: $textfield-input-padding-inline;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  border-radius: inherit;
+
+  &:where(:focus-visible) {
+    outline: none;
+  }
+
+  &:where(input) {
+    block-size: $textfield-input-block-size;
+  }
+
+  &:where(textarea) {
+    resize: vertical;
+  }
+
+  :where(.textfield--leading-icon) & {
+    padding-inline-start: $textfield-icon-input-padding;
+  }
+
+  :where(.textfield--trailing-icon) & {
+    padding-inline-end: $textfield-icon-input-padding;
+  }
+
+  &:is(:disabled),
+  .textfield:is([data-disabled="true"]) & {
+    cursor: not-allowed;
+    user-select: none;
+  }
+
+  &:is(:readonly),
+  .textfield:is([data-readonly="true"]) & {
+    cursor: default;
+  }
+}
+
+// Textfield label.
+// -------------------------
+
+.textfield__label {
+  position: absolute;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  cursor: inherit;
+  opacity: .64;
+  transform-origin: 0 0;
+  transition:
+    opacity 150ms ease-in-out,
+    transform 150ms ease-in-out
+  ;
+
+  :where(:not(.leading-icon)) & {
+    inset-inline-start: $textfield-label-offset;
+  }
+
+  :where(.leading-icon) & {
+    inset-inline-start: $textfield-icon-input-padding;
+  }
+
+  :where(
+    .textfield:focus-within,
+    .textfield[data-focus="true"]
+  ):where(:not(.textfield[data-readonly="true"])) & {
+    opacity: 1;
+  }
+
+  :where(
+    .textfield:focus-within,
+    .textfield[data-value="true"],
+    .textfield[data-readonly="true"]
+  ) & {
+    font-weight: 500;
+    transform: scale(.75) translateY(-50%);
+    transition-duration: 60ms, 60ms;
+  }
+
+  .textfield__input:is(:disabled) ~ &,
+  .textfield:is([data-disabled="true"]) & {
+    user-select: none;
+  }
+}
+
+// Textfield interaction.
+// -------------------------
+
+.textfield__background,
+.textfield__focus {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    border-radius: inherit;
+  }
+}
+
+// Textfield interaction background.
+// -------------------------
+
+.textfield__background::before,
+.textfield__background::after {
+  inset: 0;
+  opacity: 0;
+}
+
+.textfield__background::before {
+  background-color: currentColor;
+  transition: opacity 150ms ease-in-out;
+
+  :where(.textfield:hover) & {
+    opacity: .04;
+  }
+
+  :where(.textfield:focus-within) & {
+    opacity: .08;
+  }
+
+  .textfield__input:is(:disabled) ~ &,
+  .textfield:is([data-disabled="true"]) & {
+    opacity: .26;
+  }
+
+  .textfield__input:is(:readonly) ~ &,
+  .textfield:is([data-readonly="true"]) & {
+    opacity: .14;
+  }
+}
+
+// Textfield interaction focus.
+// -------------------------
+
+.textfield__focus,
+.textfield__focus::before,
+.textfield__focus::after {
+  border-style: solid;
+}
+
+.textfield__focus {
+  border-color: $textfield-focus-bd-color;
+  border-width: $textfield-focus-bd-width;
+}
+
+.textfield__focus::before,
+.textfield__focus::after {
+  inset: $textfield-focus-inset-offset;
+  transition: opacity 150ms ease-in-out;
+
+  .textfield__input:is(:disabled) ~ &,
+  .textfield:is([data-disabled="true"]) &,
+  .textfield__input:is(:readonly) ~ &,
+  .textfield:is([data-readonly="true"]) & {
+    opacity: 0;
+  }
+}
+
+.textfield__focus::before {
+  border-color: $textfield-focus-hover-bd-color;
+  border-width: $textfield-focus-bd-width;
+  opacity: 0;
+
+  :where(.textfield:hover):where(:not(.textfield:focus-within)) & {
+    opacity: .56;
+  }
+}
+
+.textfield__focus::after {
+  border-width: $textfield-focus-within-bd-width;
+  opacity: 0;
+
+  :where(.textfield:focus-within) & {
+    opacity: .56;
+  }
+}
+
+// Textfield icon.
+// -------------------------
+
+.textfield__icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  block-size: $textfield-icon-size;
+  font-size: $textfield-icon-size;
+  color: currentColor;
+  pointer-events: none;
+  opacity: .64;
+
+  :where(.leading-icon) & {
+    inset-inline-start: $textfield-icon-offset;
+  }
+
+  :where(.trailing-icon) & {
+    inset-inline-end: $textfield-icon-offset;
+  }
+}
+
+// Textfield theme.
+// -------------------------
+
+@each $name, $color in theme-variable.$color-map {
+  :where(.textfield.#{$name}):where(
+    .textfield:focus-within, .textfield[data-focus="true"]
+  ) .textfield__label {
+    color: $color;
+  }
+
+  :where(.textfield.#{$name}) .textfield__focus::after {
+    border-color: $color;
+  }
+}
