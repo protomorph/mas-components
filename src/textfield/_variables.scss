@@ -1,0 +1,39 @@
+//
+// Components Textfield Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "../theme/variables" as theme-variable;
+
+// Textfield.
+
+$textfield-fz: 1rem;
+$textfield-lh: 1.5rem;
+$textfield-bd-radius: theme-variable.$bd-radius;
+$textfield-fg-color: theme-variable.$text-dark;
+
+// Input.
+
+$textfield-input-block-size: 3.5rem;
+$textfield-input-padding-block: 1.5rem .5rem;
+$textfield-input-padding-inline: 1rem;
+
+// Label.
+
+$textfield-label-offset: $textfield-input-padding-inline;
+
+// Interaction focus.
+
+$textfield-focus-bd-color: rgb(0 0 0 / .26);
+$textfield-focus-bd-width: .0625rem;
+$textfield-focus-inset-offset: -($textfield-focus-bd-width + .0025rem);
+
+$textfield-focus-hover-bd-color: currentColor;
+
+$textfield-focus-within-bd-width: .125rem;
+
+// Icon.
+
+$textfield-icon-size: 1.5rem;
+$textfield-icon-offset: $textfield-input-padding-inline;
+$textfield-icon-input-padding: $textfield-icon-size + ($textfield-input-padding-inline * 2);
