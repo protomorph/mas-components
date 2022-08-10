@@ -42,14 +42,7 @@ export default class Collapsible extends TriggerEvent {
     this.root.addEventListener('click', this.handler_)
     this.root.addEventListener('collapsible:close', this.closeHandler_)
 
-    /** @type {{ state: string, target: HTMLElement, toggle: HTMLElement }} */
-    this.details = {
-      state: this.collapse,
-      target: this.target,
-      toggle: this.root
-    }
-
-    this.triggerEvent('collapsible:ready', { details: this.details })
+    this.triggerEvent('collapsible:ready', { detail: this.detail })
   }
 
   /**
@@ -69,6 +62,17 @@ export default class Collapsible extends TriggerEvent {
   }
 
   /**
+   * @returns {{ state: string, target: HTMLElement, toggle: HTMLElement }}
+   */
+  get detail() {
+    return {
+      state: this.collapse,
+      target: this.target,
+      toggle: this.root
+    }
+  }
+
+  /**
    * @returns {void} 
    */
   close() {
@@ -76,17 +80,15 @@ export default class Collapsible extends TriggerEvent {
 
     /** @type {string} */
     this.target.dataset.collapse = 'hidden'
-    /** @type {{ state: string, target: HTMLElement, toggle: HTMLElement }} */
-    this.details = {
-      state: this.collapse,
-      target: this.target,
-      toggle: this.root
-    }
 
-    this.triggerEvent('collapsible:closing', { details: this.details })
+    this.triggerEvent('collapsible:closing', { detail: this.detail })
     this.target.setAttribute('aria-hidden', 'true')
     this.root.setAttribute('aria-expanded', 'false')
-    this.transitionEnd_(_ => this.triggerEvent('collapsible:closed', { details: this.details }))
+    this.transitionEnd_(
+      _ => this.triggerEvent(
+        'collapsible:closed', { detail: this.detail }
+      )
+    )
   }
 
   /**
@@ -97,17 +99,15 @@ export default class Collapsible extends TriggerEvent {
 
     /** @type {string} */
     this.target.dataset.collapse = 'visible'
-    /** @type {{ state: string, target: HTMLElement, toggle: HTMLElement }} */
-    this.details = {
-      state: this.collapse,
-      target: this.target,
-      toggle: this.root
-    }
 
-    this.triggerEvent('collapsible:opening', { details: this.details })
+    this.triggerEvent('collapsible:opening', { detail: this.detail })
     this.root.setAttribute('aria-expanded', 'true')
     this.target.setAttribute('aria-hidden', 'false')
-    this.transitionEnd_(_ => this.triggerEvent('collapsible:open', { details: this.details }))
+    this.transitionEnd_(
+      _ => this.triggerEvent(
+        'collapsible:open', { detail: this.detail }
+      )
+    )
   }
 
   /**
