@@ -1,0 +1,153 @@
+//
+// Components Slider SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "variables" as *;
+
+// Slider.
+// -------------------------
+
+.slider {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  inline-size: $slider-inline-size;
+  max-inline-size: 100%;
+}
+
+:where(.slider) {
+  color: $slider-fg-color;
+}
+
+// Slider input.
+// -------------------------
+
+.slider__input {
+  display: block;
+  z-index: 1;
+  box-sizing: inherit;
+  block-size: $slider-input-block-size;
+  inline-size: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  appearance: none;
+  cursor: pointer;
+}
+
+// Slider track.
+// -------------------------
+
+.slider__track {
+  position: absolute;
+  inset-inline: 0;
+  display: flex;
+  box-sizing: inherit;
+  block-size: $slider-track-block-size;
+  background-color: $slider-track-bg-color;
+  border-radius: $slider-track-bd-radius;
+  overflow: hidden;
+  pointer-events: none;
+
+  :where(.slider__input:focus-visible) ~ & {
+    outline-color: $slider-outline-color;
+    outline-offset: $slider-outline-offset;
+    outline-style: solid;
+    outline-width: $slider-outline-width;
+  }
+}
+
+// Slider runnable.
+// -------------------------
+
+.slider__runnable {
+  display: inline-flex;
+  box-sizing: inherit;
+  block-size: 100%;
+  inline-size: 100%;
+  background-color: currentColor;
+  scale: var(--slider-runnable, 0) 1;
+  transform-origin: left center;
+}
+
+// Slider marker.
+// -------------------------
+
+.slider__marker {
+  position: absolute;
+  inset-inline-start: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: inherit;
+  block-size: $slider-marker-size;
+  inline-size: $slider-marker-size;
+  pointer-events: none;
+  translate: var(--slider-marker, 0) 0;
+  transform-origin: left center;
+}
+
+// Slider thumb.
+// -------------------------
+
+.slider__thumb {
+  display: block;
+  flex-shrink: 0;
+  box-sizing: inherit;
+  block-size: $slider-thumb-size;
+  inline-size: $slider-thumb-size;
+  background-color: currentColor;
+  border-radius: $slider-thumb-bd-radius;
+  pointer-events: initial;
+  cursor: pointer;
+}
+
+// Slider thumb.
+// -------------------------
+
+.slider__pin {
+  position: absolute;
+  inset-block-start: -.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: inherit;
+  block-size: 1.75rem;
+  inline-size: 1.75rem;
+  font-size: .625rem;
+  letter-spacing: .025em;
+  background-color: currentColor;
+  border-radius: 50% 50% 50% 0%;
+  opacity: 0;
+  transform-origin: end center;
+  rotate: -45deg;
+  scale: 0;
+  translate: 0 0;
+  transition:
+    opacity 100ms ease-out 0ms,
+    scale 100ms ease-out 100ms,
+    translate 100ms ease-out 100ms
+  ;
+
+  &::before {
+    content: attr(data-value);
+    rotate: 45deg;
+  }
+
+  :where(
+    .slider__input:hover,
+    .slider__input:focus-visible
+  ) ~ * & {
+    opacity: .84;
+    scale: 1;
+    translate: 0 -1.875rem;
+    transition-delay: 0ms, 0ms, oms;
+  }
+}
+
+:where(.slider__pin:not([class*="bg-"]))::before {
+  color: $slider-pin-fg-color;
+}

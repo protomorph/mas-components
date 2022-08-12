@@ -1,0 +1,40 @@
+{% extends "layout/default.html" %}
+
+{% block content %}
+  <h1>{{ pageTitle }}</h1>
+
+  <div class="grid xs:2 md:4">
+    <div class="slider">
+      <input class="slider__input" min="0" max="10" step="0.1" type="range" value="3">
+      <div class="slider__track" role="presentation">
+        <span class="slider__runnable"></span>
+      </div>
+      <div class="slider__marker" role="presentation">
+        <span class="slider__thumb elevation:2"></span>
+        <span class="slider__pin"></span>
+      </div>
+    </div>
+
+    <div class="slider text-pink">
+      <input class="slider__input" min="0" max="100" step="1" type="range" value="27">
+      <div class="slider__track" role="presentation">
+        <span class="slider__runnable"></span>
+      </div>
+      <div class="slider__marker" role="presentation">
+        <span class="slider__thumb bg-pink elevation:2"></span>
+        <span class="slider__pin"></span>
+      </div>
+    </div>
+
+    <div class="slider text-green">
+      <input class="slider__input" min="0" max="100" step="1" type="range" value="27">
+      <div class="slider__track" role="presentation">
+        <span class="slider__runnable"></span>
+      </div>
+      <div class="slider__marker" role="presentation">
+        <span class="slider__thumb elevation:2"></span>
+        <span class="slider__pin bg-orange"></span>
+      </div>
+    </div>
+  </div>
+{% endblock %}
