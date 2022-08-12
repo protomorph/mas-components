@@ -10,12 +10,19 @@
 
 .slider {
   position: relative;
-  display: inline-flex;
   align-items: center;
   justify-content: flex-start;
   box-sizing: border-box;
-  inline-size: $slider-inline-size;
-  max-inline-size: 100%;
+  inline-size: 100%;
+
+  &:where(:not(.block)) {
+    display: inline-flex;
+    max-inline-size: $slider-inline-size;
+  }
+
+  &:where(.block) {
+    display: flex;
+  }
 }
 
 :where(.slider) {
