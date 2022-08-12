@@ -1,0 +1,26 @@
+//
+// Components Slider Variables SCSS.
+// @version 3.0.0
+// -------------------------
+
+@use "sass:map";
+@use "../theme/variables" as theme-variable;
+
+$slider-inline-size: 12rem;
+$slider-fg-color: map.get(theme-variable.$color-map, "dark");
+$slider-outline-color: currentColor;
+$slider-outline-offset: .5rem;
+$slider-outline-width: .125rem;
+
+$slider-input-block-size: 1.5rem;
+
+$slider-track-block-size: .25rem;
+$slider-track-bd-radius: .25rem;
+$slider-track-bg-color: rgb(0 0 0 / .12);
+
+$slider-marker-size: 1rem;
+
+$slider-thumb-size: 1rem;
+$slider-thumb-bd-radius: 50%;
+
+$slider-pin-fg-color: rgb(250 250 250);

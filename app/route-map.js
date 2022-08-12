@@ -81,6 +81,13 @@ const routeMap = [
     type: 'layout'
   },
   {
+    name: 'Slider',
+    path: '/slider',
+    view: 'components/slider',
+    menu: true,
+    type: 'component'
+  },
+  {
     name: 'Textfield',
     path: '/textfield',
     view: 'components/textfield',
