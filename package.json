@@ -15,7 +15,7 @@
     "start": "nodemon -w app -e js,html bin/index.js"
   },
   "dependencies": {
-    "body-parser": "^1.20.3",
+    "body-parser": "^2.2.0",
     "cookie-parser": "^1.4.7",
     "express": "^4.21.2",
     "nunjucks": "^3.2.4"
